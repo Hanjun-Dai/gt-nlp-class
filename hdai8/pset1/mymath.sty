@@ -1,0 +1,169 @@
+\ProvidesPackage{mymath}
+% Copyright 2009 by:
+% Joshua V. Dillon <jvdillon AATT gatech DDOTT edu>
+% Guy Lebanon      <lebanon  AATT gatech DDOTT edu>
+%
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+
+%\usepackage[amsmath,thmmarks]{ntheorem}
+\RequirePackage{amsmath,amssymb,amsthm}
+
+
+
+
+% --- General Math ------------------------------------------------------------
+\newcommand{\questioneq}{\mbox{$\;\stackrel{\mbox{\tiny\rm ?}}{=}\;$}}
+\newcommand{\defeq}{\mbox{$\;\stackrel{\mbox{\tiny\rm def}}{=}\;$}}
+\def\argmin{\operatornamewithlimits{arg\, min}}
+\def\argmax{\operatornamewithlimits{arg\, max}}
+\def\infsup{\operatornamewithlimits{inf\,\,sup}}
+\def\bb{\boldsymbol}
+\newcommand{\field}[1]{\mathbb{#1}}
+\def\R{\field{R}}
+\def\P{\field{P}}
+\def\H{\field{H}}
+\def\N{\field{N}}
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
+%\providecommand{\abs}[1]{\lvert#1\rvert}
+
+% boxed equations
+\newcommand{\boxedeqn}[1]{%
+  \[\fbox{%
+      \addtolength{\linewidth}{-2\fboxsep}%
+      \addtolength{\linewidth}{-2\fboxrule}%
+      \begin{minipage}{\linewidth}%
+      \begin{align}#1\end{align}%
+      \end{minipage}%
+    }\]%
+}
+
+% permutations and ranking
+\def\S{\mathfrak{S}}
+\def\W{\mathfrak{W}}
+\def\Sn{\mathfrak{S}_n}
+
+\def\range{\textsf{\text{Range}}\,}
+\def\dom{\textsf{\text{Dom}}\,}
+\def\undef{\small\texttt{UNDEF}}
+
+%% New definition of square root:
+%% it renames \sqrt as \oldsqrt
+%\let\oldsqrt\sqrt
+%% it defines the new \sqrt in terms of the old one
+%\def\sqrt{\mathpalette\DHLhksqrt}
+%\def\DHLhksqrt#1#2{\setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0
+%\advance\dimen0-0.2\ht0
+%\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+%{\box0\lower0.4pt\box2}}
+
+%% http://www.math.uh.edu/~torok/math_6298/latex/fancy-stuff.html
+%%\numberwithin{equation}{section}    % add the section number to the equation label
+%\theoremstyle{plain}            % use "default" font
+%\newtheorem{thm}{Theorem}[section]
+%%\newtheorem{lemma}[thm]{Lemma}
+%\newtheorem{prop}[thm]{Proposition}
+%\newtheorem{cor}[thm]{Corollary}
+%\theoremstyle{definition}       % use "definition-style" font for the rest
+%\newtheorem{defn}[thm]{Definition}
+%\newtheorem{examp}[thm]{Example}
+%\newtheorem{conj}[thm]{Conjecture}
+%\newtheorem{rmk}[thm]{Remark}
+
+\theoremstyle{plain}            % use "default" font
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+
+\theoremstyle{remark}       % use "remark-style"
+\newtheorem{rmk}{Remark}
+\newtheorem{clm}{Claim}
+
+\theoremstyle{definition}       % use "definition-style" font for the rest
+\newtheorem{defn}{Definition}
+\newtheorem{conj}{Conjecture}
+%\newtheoremstyle{example}{}{}{}{}{\bfseries}{.}{}{}
+%\theoremstyle{example} 
+\newtheorem{examp}{Example}
+
+
+
+% --- Real Analysis -----------------------------------------------------------
+\def\metricball{\operatorname{\sf B}}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+
+
+% --- Statistics and Probability ----------------------------------------------
+\def\Pr{\operatorname{\sf P}}
+\def\E{\operatorname{\sf E}}
+\def\H{\operatorname{\sf H}}
+\def\Var{\operatorname{\sf Var}}
+\def\Cov{\operatorname{\sf Cov}}
+\def\bias{\operatorname{\sf bias}}
+\def\mse{\operatorname{\sf mse}}
+\def\err{\operatorname{\sf err}}
+%\newcommand{\toop}{\mbox{$\;\stackrel{\mbox{\tiny\rm p}}{\to}\;$}}
+\newcommand{\toop}{\xrightarrow{\text{\tiny\rm p}}}
+%\newcommand{\tooas}{\mbox{$\;\stackrel{\mbox{\tiny\rm a.s.}}{\to}\;$}}
+\newcommand{\tooas}{\xrightarrow{\text{\tiny\rm as}}}
+\newcommand{\tood}{\rightsquigarrow}
+
+\newcommand{\iid}{\mbox{$\;\stackrel{\mbox{\tiny\rm iid}}{\sim}\;$}}
+
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+	\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+\newcommand{\kldiv}[2]{\operatorname{D}_\text{\tiny \sf KL}\!\!\left(\vphantom{\big|}#1\,\middle|\!\middle|\,#2\right)}
+%\newcommand{\kldiv}[2]{\operatorname{D}_\text{KL}\left(#1\,\Big|\!\Big|\,#2\right)}
+
+
+% --- Linear Algebra ----------------------------------------------------------
+\def\tee{\textsf{\text{T}}\,}
+\def\trace{\operatorname{\sf tr}}
+\def\diag{\operatorname{\sf diag}}
+\def\sentry{\operatorname{\sf e}}
+\def\toep{\operatorname{\sf Toep}}
+\def\ident{\operatorname{\sf I}}
+\def\dotp#1#2{\left\langle{#1},\,{#2}\right\rangle}
+\def\vector{\operatorname{vec}}
+
+
+% --- Convenience/Working definitions -----------------------------------------
+\newcommand{\nchoosek}[2]{\left(\!
+	\begin{array}{c}#1\\#2\end{array}\!\right)}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\stepfunc}[1]{\text{u}\left(#1\right)}
+
+\def\tee{{\textsf{\text{T}}}}
+\def\precision{\textsf{\text{Precision}}\,}
+\def\rel{\textsf{\text{rel}}\,}
+\def\tf{\textsf{\text{tf}}\,}
+\def\score{\textsf{\text{score}}\,}
+
+% better to use: bbold \usepackage{gensymb,bbold}
+%%%\newcommand\ones[2]{\operatorname{ones}(#1,#2)}
+\newcommand{\mathbbone}{{\rm 1\hspace*{-0.4ex}%
+    \rule{0.1ex}{1.52ex}\hspace*{0.2ex}}}
+\newcommand\ones[2]{
+    \operatorname{\mathbbone}_{\scriptsize (#1 \times #2)}}
+
+%\newcommand{\exppropto}{\mbox{$\;\stackrel{\mbox{\tiny\rm exp}}{\propto}\;$}}
+\newcommand{\exppropto}{\mbox{$\;\stackrel{\tiny \exp}{\propto}\;$}}
+
+
+% --- TIKZ --------------------------------------------------------------------
+% \RequirePackage{bm,tikz}
+% \usetikzlibrary{arrows,shapes}
+% \tikzstyle{vertex}=[circle,fill=white,draw=black,minimum size=7mm,inner sep=0mm]
+% \tikzstyle{vertexobs}=[vertexobs, fill=black!25]
+% \tikzstyle{edge} = [draw,thick,->]
+% \tikzstyle{weight} = [font=\small]
+% \tikzstyle{invisible}=[vertex,draw=none,fill=none,scale=.1]
+
+\newcommand{\comment}[1]{}
+\newcommand{\todo}[1]{\fbox{{\large TODO:} #1}}
+
+ 

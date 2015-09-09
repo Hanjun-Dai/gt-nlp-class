@@ -1,0 +1,69 @@
+Question 1:
+I choose this sentence:
+<wf cmd=ignore pos=WRB>How</wf> 
+<wf cmd=done pos=JJ lemma=long wnsn=1 lexsn=3:00:02::>long</wf>  
+--this is the only reasonable sense.
+<wf cmd=done pos=VBZ ot=notag>has</wf>
+<wf cmd=ignore pos=PRP>it</wf>
+<wf cmd=done pos=VB lemma=be wnsn=1 lexsn=2:42:03::>been</wf>
+--this is the only reasonable sense.
+<wf cmd=ignore pos=IN>since</wf>
+<wf cmd=ignore pos=PRP>you</wf>
+<wf cmd=done pos=VB lemma=review wnsn=1 lexsn=2:31:00::>reviewed</wf>
+--#1 means reexamine, which I think is not the most appropriate; 
+--#3, "go over", could be better. 
+<wf cmd=ignore pos=DT>the</wf>
+<wf cmd=done pos=NN lemma=objective wnsn=1 lexsn=1:09:00::>objectives</wf>
+--this is the only reasonable sense.
+<wf cmd=ignore pos=IN>of</wf>
+<wf cmd=ignore pos=PRP$>your</wf>
+<wf cmd=done pos=NN lemma=benefit wnsn=1 lexsn=1:21:00::>benefit</wf>
+--#1 is related to finance. But here it could be more general. 
+--So #2, "something that aids or promotes well-being" could be better. 
+<wf cmd=ignore pos=CC>and</wf>
+<wf cmd=done pos=NN lemma=service wnsn=5 lexsn=1:04:07::>service</wf>
+--#5 is "employment in or work for another". 
+--But I think #1, "work done by one person or group that benefits another" could be better. 
+<wf cmd=done pos=NN lemma=program wnsn=2 lexsn=1:09:01::>program</wf>
+--this is the only reasonable sense. 
+<punc>?</punc>
+
+So for human readers, they will infer the meaning of the words according to the entire corpus, 
+not only within the sentence or few phrases. But it could be wrong, when you misunderstand the entire corpus.
+It is common that different people will have different understanding about the same article. In that case, 
+more information (e.g., the background of the article/sentence, the writing habit of the author) should also
+be considered. 
+
+Question 2:
+I choose the sentence from the course website: "Say why you think a human reader would not misinterpret the word in the text as having the wrong sense, or say why they could make this mistake." 
+I'm using http://parts-of-speech.info/ for pos tag. 
+<wf pos=VB wnsn=1>Say</wf>
+<wf pos=WRB wnsn=1>why</wf>
+<wf pos=PRP>you</wf>
+<wf pos=VBP wnsn=1>think</wf>
+<wf pos=DT>a</wf>
+<wf pos=JJ wnsn=2>human</wf>
+<wf pos=NN wnsn=1>reader</wf>
+<wf pos=MD>would</wf>
+<wf pos=RB>not</wf>
+<wf pos=VB wnsn=1>misinterpret</wf>
+<wf pos=DT>the</wf>
+<wf pos=NN wnsn=1>word</wf>
+<wf pos=IN>in</wf>
+<wf pos=DT>the</wf>
+<wf pos=NN wnsn=1>text</wf>
+<wf pos=IN>as</wf>
+<wf pos=VBG wnsn=1>having</wf>
+<wf pos=DT>the</wf>
+<wf pos=JJ wnsn=1>wrong</wf>
+<wf pos=NN wnsn=2>sense</wf>
+<punc>,</punc>
+<wf pos=CC>or</wf>
+<wf pos=VB wnsn=1>say</wf>
+<wf pos=WRB wnsn=1>why</wf>
+<wf pos=PRP>they</wf>
+<wf pos=MD>could</wf>
+<wf pos=VB wnsn=3>make</wf>
+<wf pos=DT>this</wf>
+<wf pos=NN wnsn=2>mistake</wf>
+<punc>.</punc>
