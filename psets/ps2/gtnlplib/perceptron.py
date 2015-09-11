@@ -9,9 +9,8 @@ def oneItPerceptron(data_generator,weights,labels):
     num_insts = 0.
     # your code here
     for sample in data_generator:
-        feature = sample[0]
-        label = sample[1]
-        pred, scores = predict(feature, weights, labels)        
+        feature, label = sample
+        pred = predict(feature, weights, labels)[0]
         num_insts += 1
         if pred != label:
             errors += 1
