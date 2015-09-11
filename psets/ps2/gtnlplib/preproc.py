@@ -17,6 +17,12 @@ def docsToBOWs(keyfile):
                     for line in infile: 
                         decoded = line.decode('ascii','ignore')
                         # YOUR CODE HERE
+                        sentences = sent_tokenize(decoded.lower())
+                        for s in sentences:
+                            words = word_tokenize(s)
+                            for w in words:
+                                if w.isalpha():
+                                    fcounts[w] += 1
                 for word,count in fcounts.items():
                     print >>outfile,"{}:{}".format(word,count), #write the word and its count to a line
                 print >>outfile,""

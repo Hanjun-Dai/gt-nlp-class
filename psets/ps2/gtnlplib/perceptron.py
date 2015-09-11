@@ -8,6 +8,16 @@ def oneItPerceptron(data_generator,weights,labels):
     errors = 0.
     num_insts = 0.
     # your code here
+    for sample in data_generator:
+        feature = sample[0]
+        label = sample[1]
+        pred, scores = predict(feature, weights, labels)        
+        num_insts += 1
+        if pred != label:
+            errors += 1
+            for w in feature:
+                weights[(label, w)] += feature[w]
+                weights[(pred, w)] -= feature[w]
     return weights, errors, num_insts
 
 # this code trains the perceptron for N iterations on the supplied training data

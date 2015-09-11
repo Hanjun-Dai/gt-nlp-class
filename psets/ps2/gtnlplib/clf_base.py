@@ -12,9 +12,19 @@ argmax = lambda x : max(x.iteritems(),key=operator.itemgetter(1))[0]
 # hide inner code
 # should return two outputs: the highest-scoring label, and the scores for all labels
 def predict(instance,weights,labels):
-    pass
     #YOUR CODE HERE
-    #return argmax(scores),scores
+    scores = {}    
+    for pred in labels:
+        scores[pred] = 0.0
+        for feat in instance:
+            key = (pred, feat) 
+            if key in weights:
+                scores[pred] += instance[feat] * weights[key] 
+    argmax = labels[0]
+    for i in range(1, len(labels)):
+        if scores[labels[i]] > scores[argmax]:
+            argmax = labels[i]
+    return argmax, scores
 
 def evalClassifier(weights,outfilename,testfile,test_mode=False):    
     with open(outfilename,'w') as outfile:

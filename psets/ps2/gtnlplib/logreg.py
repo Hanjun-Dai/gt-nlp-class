@@ -9,7 +9,18 @@ import gtnlplib.scorer as scorer
 
 # compute the normalized probability of each label 
 def computeLabelProbs(instance,weights,labels):
-    # your code goes here
+    probs = defaultdict(float)    
+    total_scores = 0.0
+    for label in labels:
+        score = 0.0
+        for w in instance:
+            score += instance[w] * weights[(label, w)]
+        total_scores += np.exp(score)
+        probs[label] = np.exp(score)
+        
+    for label in probs:
+        probs[label] = probs[label] / total_scores
+    return probs
 
 def trainLRbySGD(N_its,inst_generator, outfile, devkey, learning_rate=1e-4, regularizer=1e-2):
     weights = defaultdict(float)
@@ -32,7 +43,14 @@ def trainLRbySGD(N_its,inst_generator, outfile, devkey, learning_rate=1e-4, regu
             regularize(inst,i)
             # compute likelihood gradient from this instance
             probs = computeLabelProbs(inst,weights,ALL_LABELS)
+            
             if true_label != argmax(probs): tr_err += 1
+            for w in inst:
+                for pred in ALL_LABELS:
+                    weights[(pred, w)] -= learning_rate * probs[pred] * inst[w]
+                    if pred == true_label:
+                        weights[(pred, w)] += learning_rate * inst[w] 
+                    
             # your code for updating the weights goes here
 
         # regularize all features at the end of each iteration
