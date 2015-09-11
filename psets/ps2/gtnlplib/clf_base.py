@@ -20,11 +20,7 @@ def predict(instance,weights,labels):
             key = (pred, feat) 
             if key in weights:
                 scores[pred] += instance[feat] * weights[key] 
-    argmax = labels[0]
-    for i in range(1, len(labels)):
-        if scores[labels[i]] > scores[argmax]:
-            argmax = labels[i]
-    return argmax, scores
+    return argmax(scores), scores
 
 def evalClassifier(weights,outfilename,testfile,test_mode=False):    
     with open(outfilename,'w') as outfile:
