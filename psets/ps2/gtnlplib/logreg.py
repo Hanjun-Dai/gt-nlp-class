@@ -10,16 +10,17 @@ import gtnlplib.scorer as scorer
 # compute the normalized probability of each label 
 def computeLabelProbs(instance,weights,labels):
     probs = defaultdict(float)    
-    total_scores = 0.0
-    for label in labels:
-        score = 0.0
+    scores = np.zeros(len(labels))
+    
+    for i in range(len(labels)):
+        label = labels[i]
+        scores[i] = 0.0
         for w in instance:
-            score += instance[w] * weights[(label, w)]
-        total_scores += np.exp(score)
-        probs[label] = np.exp(score)
+            scores[i] += instance[w] * weights[(label, w)]         
         
-    for label in probs:
-        probs[label] = probs[label] / total_scores
+    logsum = logsumexp(scores)
+    for i in range(len(labels)):
+        probs[labels[i]] = np.exp(scores[i] - logsum)
     return probs
 
 def trainLRbySGD(N_its,inst_generator, outfile, devkey, learning_rate=1e-4, regularizer=1e-2):
@@ -42,17 +43,15 @@ def trainLRbySGD(N_its,inst_generator, outfile, devkey, learning_rate=1e-4, regu
             # apply "just-in-time" regularization to the weights for features in this instance
             regularize(inst,i)
             # compute likelihood gradient from this instance
-            probs = computeLabelProbs(inst,weights,ALL_LABELS)
-            
+            probs = computeLabelProbs(inst,weights,ALL_LABELS)                               
+            # your code for updating the weights goes here
             if true_label != argmax(probs): tr_err += 1
             for w in inst:
                 for pred in ALL_LABELS:
                     weights[(pred, w)] -= learning_rate * probs[pred] * inst[w]
                     if pred == true_label:
                         weights[(pred, w)] += learning_rate * inst[w] 
-                    
-            # your code for updating the weights goes here
-
+                        
         # regularize all features at the end of each iteration
         regularize([base_feature for label,base_feature in weights.keys()],i)
         
