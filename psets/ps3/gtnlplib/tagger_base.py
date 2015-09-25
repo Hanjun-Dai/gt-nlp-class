@@ -5,7 +5,10 @@ from gtnlplib.constants import DEV_FILE, OFFSET, TRAIN_FILE
 
 def makeClassifierTagger(weights):
      #Code here
-    return None
+    predict_tag = lambda word, alltags : clf_base.predict({word : 1, OFFSET : 1}, weights, alltags)[0]
+    tagger = lambda words, alltags: [predict_tag(word, alltags) for word in words]
+    return tagger
+    
 def evalTagger(tagger,outfilename,testfile=DEV_FILE):
     """Calculate confusion_matrix for a given tagger
 
@@ -23,8 +26,8 @@ def evalTagger(tagger,outfilename,testfile=DEV_FILE):
         for tag in tags:
             alltags.add(tag)
     with open(outfilename,'w') as outfile:
-        for words,_ in preproc.conllSeqGenerator(testfile):
-            pred_tags = tagger(words,alltags)
+        for words,_ in preproc.conllSeqGenerator(testfile):            
+            pred_tags = tagger(words,alltags)            
             for tag in pred_tags:
                 print >>outfile, tag
             print >>outfile, ""

@@ -17,6 +17,13 @@ def predict(instance,weights,labels):
     best_label -- The label with the highest score for this instance
     scores -- dict of scores for each label
     """
-    scores = {label:sum([weights[(label,feat)]*count for feat,count in instance.iteritems()]) for label in labels}
-    return argmax(scores),scores
-
+    #scores = {label:sum([weights[(label,feat)]*count for feat,count in instance.iteritems()]) for label in labels}
+    #return argmax(scores),scores
+    scores = {}
+    for pred in labels:
+        scores[pred] = 0.0
+        for feat in instance:
+            key = (pred, feat) 
+            if key in weights:
+                scores[pred] += instance[feat] * weights[key] 
+    return argmax(scores), scores
