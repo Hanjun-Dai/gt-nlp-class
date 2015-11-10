@@ -42,7 +42,7 @@ def conllSeqGenerator(input_file,max_insts=1000000):
                 cur_words.append(parts[0])
                 if len(parts)>1:
                     cur_tags.append(parts[1])
-                else: cur_tags.append(unk)
+                else: cur_tags.append(UNKNOWN)
         if len(cur_words)>0:
             num_insts += 1
             yield cur_words,cur_tags

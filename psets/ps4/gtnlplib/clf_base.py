@@ -30,7 +30,7 @@ def generateKaggleSubmission(tagger,outfilename):
         writer.writeheader()
 
         alltags = set()
-        for i,(words, tags) in enumerate(preproc.conllSeqGenerator(TEST_FILE)):
+        for i,(words, tags) in enumerate(preproc.conllSeqGenerator(TRAIN_FILE)):
             for tag in tags:
                 alltags.add(tag)
 
