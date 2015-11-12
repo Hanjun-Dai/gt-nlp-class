@@ -8,7 +8,7 @@ FOREIGN_LANGUAGE=;
 #FOREIGN_LANGUAGE="german"
 #FOREIGN_LANGUAGE="italian"
 #FOREIGN_LANGUAGE="spanish"
-#FOREIGN_LANGUAGE="french"
+FOREIGN_LANGUAGE="french"
 #FOREIGN_LANGUAGE="portuguese"
 
 rm -rf submission submission.tgz
@@ -21,6 +21,7 @@ fi
 filenames=("deliverable1a.conll" "deliverable1b.conll" "deliverable1c.conll" "deliverable1d.conll"
            "$FOREIGN_LANGUAGE.deliverable2a.conll" "$FOREIGN_LANGUAGE.deliverable2b.conll"
            "$FOREIGN_LANGUAGE.deliverable2c.conll" "$FOREIGN_LANGUAGE.deliverable2d.conll"
+           "$FOREIGN_LANGUAGE.deliverable2e.conll" "$FOREIGN_LANGUAGE.deliverable2f.conll"
 	   )
 
 archive=()
