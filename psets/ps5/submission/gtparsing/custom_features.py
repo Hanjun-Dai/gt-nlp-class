@@ -189,6 +189,6 @@ class FrenchFeat(FeatsFor2f):
         
         k = len(ff)
         f = self.getF((k, instance.pos[h], head_word.endswith('s'), instance.pos[m], mod_word.endswith('s')),add)
-        ff.append(f)                
+        ff.append(f)
         
         return ff        
